@@ -1,7 +1,7 @@
 redmine-cli
 ===========
 
-Post issue for redmine from command line
+Post issues to redmine from the command line
 
 
 Dependencies
