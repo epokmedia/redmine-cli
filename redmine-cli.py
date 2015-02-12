@@ -241,9 +241,9 @@ def unselect_project():
 def select_issue(id=None):
     if not id:
         if context.project:
-            issue_list = get_redmine().issue.filter(assigned_to_id="me", status_id=1, project_id=context.project.id)
+            issue_list = get_redmine().issue.filter(assigned_to_id="me", project_id=context.project.id)
         else:
-            issue_list = get_redmine().issue.filter(assigned_to_id="me", status_id=1)
+            issue_list = get_redmine().issue.filter(assigned_to_id="me")
 
         if len(issue_list) > 0:
             printer.title(u"Select by typing the id")
@@ -378,6 +378,7 @@ def interpret_from_issue_context(args):
         printer.info(" - taskinfo : show task info")
         printer.info(" - taskedit : edit task")
         printer.info(" - taskdelete : delete task")
+        printer.info(" - taskupload : upload task")
         printer.info(" - project [id|identifier] : select another project")
         printer.info(" - unselect : unselect the issue")
         printer.info(" - issue [id] : select another issue")
@@ -450,10 +451,6 @@ def prompt():
         user_input = raw_input('[] > ')
     user_input_splitted = shlex.split(user_input)
     interpret(user_input_splitted)
-
-
-select_project('test')
-select_issue(180)
 
 while True:
     prompt()
